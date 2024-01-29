@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Verification Page</title>
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+
+    <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"/>
+
+
+<style>
+*,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #080710;
+}
+.background{
+    width: 430px;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+}
+.background .shape{
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+}
+.shape:first-child{
+    background: linear-gradient(
+        #1845ad,
+        #23a2f6
+    );
+    left: -80px;
+    top: -80px;
+}
+.shape:last-child{
+    background: linear-gradient(
+        to right,
+        #ff512f,
+        #f09819
+    );
+    right: -30px;
+    bottom: -80px;
+}
+form{
+    height: 470px;
+    width: 400px;
+    background-color: rgba(255,255,255,0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+}
+form *{
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+form h3{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+}
+
+label{
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+input{
+    display: block;
+    height: 40px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 2px;
+    font-size: 14px;
+    font-weight: 300;
+
+}
+::placeholder{
+    color: #e5e5e5;
+}
+button{
+    margin-top: 14px;
+    width: 100%;
+    background-color: #ffffff;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover{
+    background-color: black;
+    color: white;
+}
+.social{
+  margin-top: 30px;
+  display: flex;
+}
+.social div{
+  background: red;
+  width: 150px;
+  border-radius: 3px;
+  padding: 5px 10px 10px 5px;
+  background-color: rgba(255,255,255,0.27);
+  color: #eaf0fb;
+  text-align: center;
+}
+.social div:hover{
+  background-color: rgba(255,255,255,0.47);
+}
+.social .fb{
+  margin-left: 25px;
+}
+.social i{
+  margin-right: 4px;
+}
+
+
+
+
+
+#show-password1 {
+    position: absolute;
+    top: 59%;
+    right: 11%;
+    cursor: pointer;
+    color: black;
+}
+#show-password2 {
+    position: absolute;
+    top: 75%;
+    right: 11%;
+    cursor: pointer;
+    color: black;
+}
+.eye{
+    position: absolute;
+    top: 35%;
+    right: 11%;
+}
+#hide1{
+    display: none;
+}
+#hide3{
+    display: none;
+}
+select{
+    display: block;
+    height: 40px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 300;
+}
+option{
+    background-color: rgba(255,255,255,0.13);
+    color: black;
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 2px;
+    font-size: 14px;
+    font-weight: 300;
+}
+a:hover{
+    color: red;
+}
+p{
+    color: white;
+}
+
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    
+    <form action="" method="post">
+        {% csrf_token %} 
+        <h3>Verify Here</h3>
+
+        <label for="password1">Password</label>
+        <input onclick="showAlertOnce()" type="password" placeholder="Password" id="code" name="code" required>
+        <span class = "eye" onclick = "myFunction1()">
+            <i id = "hide1" class="fa-solid fa-eye"></i>
+            <i id = "hide2" class="fa-solid fa-eye-slash"></i>
+        </span>
+
+        <label>Choose</label>
+        <select name = "food" class = "form-control" required>
+            <option value="" disabled selected hidden>Choose</option>
+            <option style = "background-color: rgb(140,140,140); color: black;" value = "Pizza">Pizza</option>
+            <option style = "background-color: rgb(140,140,140); color: black;" value = "Hamburger">Hamburger</option>
+        </select>
+
+
+
+        <div id='captcha' class="g-recaptcha" data-sitekey="6Lf4xxIpAAAAAEl1iOdz3XwnjePgkkws959zmKvj"></div>
+
+
+        <button type="submit">Verify</button>
+    </form>
+
+
+
+
+    <script>
+        function myFunction1(){
+            var in1 = document.getElementById("code");
+            var i1 = document.getElementById("hide1");
+            var i2 = document.getElementById("hide2");
+
+            if (in1.type === "password"){
+                in1.type = "text";
+                i1.style.display = "block";
+                i2.style.display = "none";
+            }
+            else {
+                in1.type = "password";
+                i1.style.display = "none";
+                i2.style.display = "block";
+            }
+        }
+    </script>
+    <script>
+        var alertShown = false;
+        function showAlertOnce(){
+            if (!alertShown){
+                alert("We have sent you an email. Please check your email and enter the one-time password.");
+                alertShown = true;
+            }
+        }
+    </script>
+
+
+
+    <script type="text/javascript">
+        var onloadCallback = function() {
+            alert("grecaptcha is ready!");
+        };
+    </script>
+
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+    
+    <script type="text/javascript">
+        var onloadCallback = function() {
+            grecaptcha.render('captcha', {
+            'sitekey' : '6Lf4xxIpAAAAAEl1iOdz3XwnjePgkkws959zmKvj'
+            });
+        };
+    </script>
+</body>
+</html>         
